@@ -7,6 +7,7 @@
 // Изменять не следует
 static constexpr double timePerTick = 0.001;
 
+
 /**
  * Конструирует объект мира для симуляции
  * @param worldFilePath путь к файлу модели мира
@@ -23,6 +24,8 @@ World::World(const std::string& worldFilePath) {
      * многократно - хорошо бы вынести это в функцию
      * и не дублировать код...
      */
+
+
     stream >> topLeft.x >> topLeft.y >> bottomRight.x >> bottomRight.y;
     physics.setWorldBox(topLeft, bottomRight);
 
