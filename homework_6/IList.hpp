@@ -116,6 +116,7 @@ public:
             }   
 
             T& operator[](const size_t index) {
+                if (!current) throw std::out_of_range("Iterator is invalid");
 
                 Node* tmp = current;
 
@@ -123,6 +124,8 @@ public:
                     if (tmp == nullptr) throw std::out_of_range("Index out of range");
                     tmp = tmp->next;
                 }
+
+                if (tmp == nullptr) throw std::out_of_range("Index out of range");
 
                 return tmp->data;
             }
@@ -149,17 +152,6 @@ public:
 
     iterator end() const {
         return iterator(nullptr);
-    }
-
-    const T& operator[](const size_t index) const {
-        if (index >= real_size) return T{};
-
-        auto it = begin();
-        for (size_t i{0}; i < index; i++) {
-            ++it;
-        }
-
-        return *it;
     }
 
     void push_back(const T& value) override {
